@@ -1,0 +1,40 @@
+
+.canvas {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+#skill-canvas > span:hover {
+  color: #ff0000;
+  /*text-shadow: 0 0 10px, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;*/
+  font-weight: bold;
+  cursor: pointer;
+  /*opacity: 0.5;*/
+}
+
+#canvas-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+.canvas {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .canvas {
+    height: 200px;
+  }
+}
+
+.canvas.hide {
+  display: none;
+}

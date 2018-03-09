@@ -7,10 +7,10 @@
 }
 
 a {
-  color: $primary;
+  color: $purplegray;
   &:hover,
   &:focus,
   &:active {
-    color: darken($primary, 15%);
+    color: darken($purplegray, 15%);
   }
 }
