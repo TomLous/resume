@@ -27,7 +27,7 @@
 
     // Activate WordCloud
     var list = $("#skills-list li").map(function() {
-        return [[$(this).text(), parseInt($(this).data("size"))]]
+        return [[$(this).attr("name"), parseInt($(this).data("size"))]]
     }).get()
 
 
@@ -39,22 +39,22 @@
         gridSize: 10,
         weightFactor: 0.40,
         shape: 'square',
-        color: '#868e96',
+        color: $("body").css("color"),
         backgroundColor: 'rgba(255,255,255,0,01)',
-        click: function(item) {
-            var items = document.getElementsByName(item[0])
-            if(items.length > 0){
-                var link = $(items[0]).attr('href');
-                if(link != '#'){
-                    location.href = link;
-                }
-
-            }
-
-
-        },
-
+        // click: function(item) {
+        //     var items = document.getElementsByName(item[0])
+        //     if(items.length > 0){
+        //         var link = $(items[0]).attr('href');
+        //         if(link != '#'){
+        //             location.href = link;
+        //         }
+        //     }
+        // }
     });
+
+    $("#skills-list li").map(function() {
+
+    }).get()
 
 
 })(jQuery); // End of use strict

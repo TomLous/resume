@@ -185,6 +185,51 @@ section.resume-section .resume-item .resume-date {
   display: none;
 }
 
+ul.inline li a.social-link {
+  padding: 0;
+  margin: 12.5px;
+  width: 36px;
+  height: 36px;
+  font-size: 30px;
+  line-height: 36px;
+  cursor: pointer;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+  color: #778396;
+}
+
+ul.inline li a.social-link:hover, ul.inline li a.social-link:focus, ul.inline li a.social-link:active {
+  color: #545d6d;
+}
+
+ul.inline {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+ul.inline li a.social-link svg {
+  fill: #778396;
+  height: 100%;
+  width: 100%;
+}
+
+ul.inline li a.social-link svg:hover, ul.inline li a.social-link svg:focus, ul.inline li a.social-link svg:active {
+  color: #545d6d;
+}
+
 .bg-primary {
   background-color: #778396 !important;
 }
