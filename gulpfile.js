@@ -62,6 +62,12 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./vendor/jquery-easing'))
 
+  // PapaParse
+  gulp.src([
+      './node_modules/papaparse/*.js'
+  ])
+    .pipe(gulp.dest('./vendor/papaparse'))
+
   // Simple Line Icons
   gulp.src([
       './node_modules/simple-line-icons/fonts/**',
