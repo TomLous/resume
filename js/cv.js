@@ -63,5 +63,26 @@
         $('.phone').text(phone);
     });
 
+    // Positions
+    parseFile('cv/export/Positions.csv', function(data) {
+        var source   = document.getElementById("position-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+        for(var i in data){
+            var position = data[i];
+            var context = {
+                title: position['Title'] + ' at ' + position['Company Name'],
+                from: position['Started On'],
+                to: position['Finished On'] === "" ? "Present" : position['Finished On'],
+                body: position['Description'].replace(/ \-/ig, "<br> -")
+            };
+            var html = template(context);
+            $("#positions").append(html);
+        }
+
+
+        console.log(data);
+    });
+
 
 })(jQuery); // End of use strict
