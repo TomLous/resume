@@ -1,8 +1,6 @@
 (function ($) {
     "use strict"; // Start of use strict
 
-    console.log("done")
-
     function parseFile(url, handler){
         Papa.parse(url,{
             download: true,
@@ -10,16 +8,16 @@
             header:true,
             skipEmptyLines: true,
             complete: function(results) {
-                handler(results)
+                handler(results.data)
             }
         })
     }
 
     // Profile
-    parseFile('cv/export/Profile.csv', function(results) {
+    parseFile('cv/export/Profile.csv', function(data) {
             //Address,Birth Date,Contact Instructions,,Summary,Industry,Country,Zip Code,Geo Location,Twitter Handles,Websites,Instant Messengers
         //Berkel & Rodenrijs (Rotterdam Area),"Aug 11, 1979",,"Spark & Scala, all day, every day. ",,Netherlands,2651,"Berkel en Rodenrijs, South Holland Province, Netherlands",tomlous,"COMPANY:http://www.datlinq.com/en/, OTHER:https://github.com/TomLous, OTHER:http://stackoverflow.com/users/1444286/tom-lous",SKYPE:tom.lous
-            var pData = results.data[0]
+            var pData = data[0]
             console.log(pData);
 
             $('.first-name').text(pData['First Name']);
@@ -47,11 +45,12 @@
                 website = websites['COMPANY']
             }
             $('.website').text(website).attr('href', website);
+            $('#summary').text(pData['Summary']);
     });
 
     // Email
-    parseFile('cv/export/Email Addresses.csv', function(results) {
-        var primary = results.data.filter(function (record) {
+    parseFile('cv/export/Email Addresses.csv', function(data) {
+        var primary = data.filter(function (record) {
             return record['Primary'] === 'Yes';
         });
         var emailAddress = primary[0]['Email Address'];
@@ -59,8 +58,8 @@
     });
 
     // Phone
-    parseFile('cv/export/Phone Numbers.csv', function(results) {
-        var phone = results.data[0]['Number'];
+    parseFile('cv/export/Phone Numbers.csv', function(data) {
+        var phone = data[0]['Number'];
         $('.phone').text(phone);
     });
 

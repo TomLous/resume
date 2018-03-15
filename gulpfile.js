@@ -64,9 +64,16 @@ gulp.task('vendor', function() {
 
   // PapaParse
   gulp.src([
-      './node_modules/papaparse/*.js'
+      './node_modules/papaparse/*.js',
+      '!./node_modules/papaparse/Gruntfile.js',
   ])
     .pipe(gulp.dest('./vendor/papaparse'))
+
+  // HandleBars
+  gulp.src([
+      './node_modules/handlebars/dist/*.js'
+  ])
+    .pipe(gulp.dest('./vendor/handlebars'))
 
   // Simple Line Icons
   gulp.src([
