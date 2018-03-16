@@ -13,6 +13,20 @@
         })
     }
 
+    function sortCompare(field, asc) {
+        asc = typeof asc !== 'undefined' ? asc : true;
+        var dir = asc ? 1  : -1;
+
+         return function(a,b) {
+            if (a[field] < b[field])
+                return (-1 * dir);
+            if (a[field] > b[field])
+                return (1 * dir);
+            return 0;
+        }
+    }
+
+
     // Profile
     parseFile('cv/export/Profile.csv', function(data) {
             //Address,Birth Date,Contact Instructions,,Summary,Industry,Country,Zip Code,Geo Location,Twitter Handles,Websites,Instant Messengers
@@ -75,14 +89,133 @@
                 from: position['Started On'],
                 to: position['Finished On'] === "" ? "Present" : position['Finished On'],
                 body: position['Description'].replace(/ \-/ig, "<br> -")
+                // body: ''
             };
             var html = template(context);
             $("#positions").append(html);
         }
-
-
-        console.log(data);
     });
+
+    // Skills
+    parseFile('cv/export/Skills.csv', function(data) {
+        var smallList = data.slice(0,18);
+
+        for(var i in smallList){
+            var skill = smallList[i]["Name"];
+            $(".keySkills").append($("<li>").text(skill));
+        }
+    });
+
+    // Certification
+    parseFile('cv/export/Certifications.csv', function(data) {
+        var source   = document.getElementById("certification-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+        var comp = sortCompare('time', false);
+
+        var sorted = data.map(function (obj) {
+            obj['time'] = new Date(obj['Start Date']).getTime()
+            return obj;
+        }).sort(comp);
+
+        for(var i in sorted){
+            var cert = sorted[i];
+            var context = {
+                title: cert['Name'],
+                date: cert['Start Date'],
+                url: cert['Url']
+            };
+            var html = template(context);
+            $("#certifications").append(html);
+
+        }
+    });
+
+    // Courses
+    parseFile('cv/export/Courses.csv', function(data) {
+        var source   = document.getElementById("course-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+
+        for(var i in data){
+            var course = data[i];
+            var context = {
+                title: course['Name']
+            };
+            var html = template(context);
+            $("#courses").append(html);
+
+        }
+    });
+
+    // Education
+    parseFile('cv/export/Education.csv', function(data) {
+        var source   = document.getElementById("education-item-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+        //School Name,Start Date,End Date,Notes,Degree Name,Activities
+        var comp = sortCompare('time', false);
+
+        var sorted = data.map(function (obj) {
+            obj['time'] = new Date(obj['Start Date']).getTime()
+            return obj;
+        }).sort(comp).filter(function (obj) {
+            console.log(obj)
+            return obj['Activities'].trim() !== "-"
+        });
+
+        for(var i in sorted){
+            var edu = sorted[i];
+            var title = edu['Activities'] === "" ? edu['School Name'] : edu['Activities'] + ' at ' + edu['School Name'];
+            var context = {
+                title: title,
+                from: edu['Start Date'],
+                degree: edu['Degree Name'],
+                to: edu['End Date'] === "" ? "Present" : edu['End Date'],
+                body: edu['Notes'].replace(/ \-/ig, "<br> -")
+            };
+            var html = template(context);
+            $("#education").append(html);
+
+        }
+    });
+
+
+
+    // Honors
+
+    // Languages
+
+    // Projects
+    //Title,Description,Url,Start Date,End Date
+    parseFile('cv/export/Projects.csv', function(data) {
+        var source   = document.getElementById("project-template").innerHTML;
+        var template = Handlebars.compile(source);
+
+        var comp = sortCompare('time', false);
+
+        var sorted = data.map(function (obj) {
+            obj['time'] = new Date(obj['Start Date']).getTime()
+            return obj;
+        }).sort(comp).slice(0,7);
+
+        for(var i in sorted){
+            var project = sorted[i];
+
+            var context = {
+                title: project['Title'],
+                from: project['Start Date'],
+                url: project['Url'],
+                to: project['End Date'] === "" ? "Present" : project['End Date'],
+                body: project['Description'].replace(/ \-/ig, "<br> -")
+            };
+            var html = template(context);
+            $("#projects").append(html);
+        }
+    });
+
+    // Publications
+
 
 
 })(jQuery); // End of use strict
