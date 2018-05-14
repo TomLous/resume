@@ -32,11 +32,11 @@
             //Address,Birth Date,Contact Instructions,,Summary,Industry,Country,Zip Code,Geo Location,Twitter Handles,Websites,Instant Messengers
         //Berkel & Rodenrijs (Rotterdam Area),"Aug 11, 1979",,"Spark & Scala, all day, every day. ",,Netherlands,2651,"Berkel en Rodenrijs, South Holland Province, Netherlands",tomlous,"COMPANY:http://www.datlinq.com/en/, OTHER:https://github.com/TomLous, OTHER:http://stackoverflow.com/users/1444286/tom-lous",SKYPE:tom.lous
             var pData = data[0]
-            console.log(pData);
+
 
             $('.first-name').text(pData['First Name']);
             $('.last-name').text(pData['Last Name']);
-            $('.headline').text(pData['Headline']);
+            $('.headline').text(pData['Headline'].replace("- available for contracts",""));
             var websites = {};
             pData['Websites'].split(', ').map(function (str) {
                 var kv = str.split(':');
@@ -59,7 +59,7 @@
                 website = websites['COMPANY']
             }
             $('.website').text(website).attr('href', website);
-            $('#summary').text(pData['Summary']);
+            $('#summary').html(pData['Summary'].replace(/\-/ig, "<br>"));
     });
 
     // Email
@@ -199,14 +199,29 @@
             return obj;
         }).sort(comp).slice(0,7);
 
+        var newSorted = [];
+
         for(var i in sorted){
             var project = sorted[i];
+            if(project['Title'] == "Spark Big Data Pipeline"){
+                newSorted.unshift(project)
+            }
+            else{
+                newSorted[i] = project
+            }
+        }
+
+
+
+
+        for(var i in sorted){
+            var project = newSorted[i];
 
             var context = {
                 title: project['Title'],
                 from: project['Start Date'],
                 url: project['Url'],
-                to: project['End Date'] === "" ? "Present" : project['End Date'],
+                to: project['End Date'] == project['Start Date'] ? null : (project['End Date'] === ""  ? "Present" : project['End Date']),
                 body: project['Description'].replace(/ \-/ig, "<br> -")
             };
             var html = template(context);

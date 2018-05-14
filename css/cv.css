@@ -48,6 +48,10 @@ p {
 	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
 }
 
+.headline{
+	font-size: 0.9em;
+}
+
 #mainArea {
 	padding: 0 40px;
 }
