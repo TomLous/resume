@@ -47,3 +47,22 @@ ul.inline li a.social-link svg {
     color: darken($primary, 15%);
   }
 }
+
+.gh-widget-item.names {
+    display:none;
+}
+.gh-widget-item.language {
+    display:none;
+}
+.gh-widget-item.stars {
+    display:none;
+}
+.gh-widget-item.gh-widget-heading {
+    display:none;
+}
+.gh-widget-item.gh-widget-active-time {
+    display:none;
+}
+.gh-widget-hr {
+    display:none;
+}

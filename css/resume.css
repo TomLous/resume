@@ -230,6 +230,30 @@ ul.inline li a.social-link svg:hover, ul.inline li a.social-link svg:focus, ul.i
   color: #545d6d;
 }
 
+.gh-widget-item.names {
+  display: none;
+}
+
+.gh-widget-item.language {
+  display: none;
+}
+
+.gh-widget-item.stars {
+  display: none;
+}
+
+.gh-widget-item.gh-widget-heading {
+  display: none;
+}
+
+.gh-widget-item.gh-widget-active-time {
+  display: none;
+}
+
+.gh-widget-hr {
+  display: none;
+}
+
 .bg-primary {
   background-color: #778396 !important;
 }
