@@ -37,7 +37,7 @@
             $('.last-name').text(pData['Last Name']);
             $('.headline').text(pData['Headline'].replace("- available for contracts",""));
             var websites = {};
-            pData['Websites'].split(', ').map(function (str) {
+            pData['Websites'].substr(1, pData['Websites'].length-2).split(',').map(function (str) {
                 var kv = str.split(':');
                 var key = kv.shift();
                 var val = kv.join(':');
@@ -46,6 +46,7 @@
                 }
             });
             var website = '#';
+            console.log(websites)
             if(websites.hasOwnProperty('PERSONAL')){
                 website = websites['PERSONAL']
             }else if(websites.hasOwnProperty('PORTFOLIO')){
@@ -97,7 +98,53 @@
 
     // Skills
     parseFile('cv/export/Skills.csv', function(data) {
-        var smallList = data.slice(0,18);
+        var blackList = [
+            "Shell Scripting",
+             "IT Management",
+             "IT Strategy",
+             "Operations Management",
+             "Business Intelligence",
+             "Web Development",
+             "Mobile Applications",
+             "SEO",
+             "AngularJS",
+             "Android",
+             "PHP",
+             "JavaScript",
+             "R",
+             "Software Solution Architecture",
+             "Endorsements",
+             "Software Development",
+             "Scrum",
+             "Artificial Neural Networks",
+             "Debian",
+             "Databases"
+             ]
+//
+//Big Data
+//Scala
+//Apache Spark
+//Machine Learning
+//Artificial Intelligence
+//Software Development
+//Scrum
+//Hadoop
+//Google Cloud Platform
+//Docker
+//R
+//Linux
+//Databases
+//Debian
+//MySQL
+//PostgreSQL
+//AngularJS
+//Android
+
+//data
+
+        var smallList = data.filter(function(item){
+                                      return blackList.indexOf(item["Name"]) === -1;
+                                    }).slice(0,218);
 
         for(var i in smallList){
             var skill = smallList[i]["Name"];
@@ -159,7 +206,6 @@
             obj['time'] = new Date(obj['Start Date']).getTime()
             return obj;
         }).sort(comp).filter(function (obj) {
-            console.log(obj)
             return obj['Activities'].trim() !== "-"
         });
 
@@ -194,27 +240,27 @@
         var comp = sortCompare('time', false);
 
         var sorted = data.map(function (obj) {
-            obj['time'] = new Date(obj['Start Date']).getTime()
+            obj['time'] = new Date(obj['Started On']).getTime()
             return obj;
         }).sort(comp).slice(0,7);
 
-        var newSorted = [];
+//        var newSorted = [];
+//
+//        for(var i in sorted){
+//            var project = sorted[i];
+//            if(project['Title'] == "Spark Big Data Pipeline"){
+//                newSorted.unshift(project)
+//            }
+//            else{
+//                newSorted[i] = project
+//            }
+//        }
+
+
+
 
         for(var i in sorted){
             var project = sorted[i];
-            if(project['Title'] == "Spark Big Data Pipeline"){
-                newSorted.unshift(project)
-            }
-            else{
-                newSorted[i] = project
-            }
-        }
-
-
-
-
-        for(var i in sorted){
-            var project = newSorted[i];
 
             var context = {
                 title: project['Title'],
