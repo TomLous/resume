@@ -46,7 +46,7 @@
                 }
             });
             var website = '#';
-            console.log(websites)
+
             if(websites.hasOwnProperty('PERSONAL')){
                 website = websites['PERSONAL']
             }else if(websites.hasOwnProperty('PORTFOLIO')){
