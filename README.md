@@ -1,5 +1,15 @@
 Tom Lous's Resume
 
+# Install 
+
+```
+brew install node@10
+brew unlink node
+brew link --force --overwrite node@10
+npm install --global gulp-cli
+```
+
+maybe remove old modules  ``
 
 #### Gulp Tasks
 
