@@ -2,10 +2,12 @@ Name
 Big Data
 Scala
 Python
-Functional Programming
+FP
 Apache Spark
 Apache Kafka
 Kubernetes
 Apache Hadoop
 Machine Learning
-Cats / Cats-effect
+ZIO
+Cats
+Terraform

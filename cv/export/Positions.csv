@@ -1,5 +1,6 @@
 Company Name,Title,Description,Location,Started On,Finished On
-Nike, Principal Engineer,"Data Engineering & Architecture for Nike's EMEA In Season Optimization data & ML products",Jun 2021,Jun 2021
+Schiphol, Lead Data Engineer,"Leading the data factory team and implementing scalable data ingestion solutions for a data mesh architecture using Spark, Scala, ZIO, Databricks, Kafka and Kubernetes (OpenShift)","Schiphol, Netherlands",Nov 2021,
+Nike, Principal Engineer,"Data Engineering & Architecture for Nike's EMEA In Season Optimization data & ML products","Hilversum, Netherlands",Jun 2021,Nov 2021
 Shell,Lead Data Engineer,"Designing and building the data architecture for a brand new global agile data team at Shell's Agile Hub using Spark, Kafka, Kubernetes, Airflow and Hadoop on top of Azure and AWS","Rotterdam Area, Netherlands",Jun 2019,Jun 2021
 Young Maverics,Trainer Data Engineering & Data Science,"Host occasional trainings for future data engineers & scientists: DevOps for Data Engineers, Functional Programming with Scala, Building & Deploying Spark Applications",Oct 2020,Oct 2020
 VodafoneZiggo,Senior Data Engineer,"Part of the Advanced Analytics Platform (AAP) and Technical Passport (TP). (Py)Spark, Hive, Oozie & Hadoop development.","Utrecht Area, Netherlands",Apr 2019,May 2019
